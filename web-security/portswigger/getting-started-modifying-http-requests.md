@@ -72,13 +72,18 @@ Evidence captured during the exercise includes:
 - Product successfully added using the modified price
 - PortSwigger completion confirmation
 
-  #Intercepted `POST /cart` request and `price` parameter identified in the request:
-<img width="1470" height="956" alt="Screenshot 2026-10-27 at 7 45 51 AM" src="https://github.com/user-attachments/assets/2b92ac0d-31a1-40f6-90f5-daaa60c2ef0d" />
+      #Intercepted `POST /cart` request and `price` parameter identified in the request:
 
-  #Modified request (price changed to 1) forwarded through Burp Proxy:
-<img width="1470" height="956" alt="Screenshot 2026-10-27 at 7 49 16 AM" src="https://github.com/user-attachments/assets/894a5965-f276-4833-8ca9-7ff21c1fd64a" />
+<img width="1012" height="576" alt="Screenshot 2026-10-27 at 8 07 45 AM" src="https://github.com/user-attachments/assets/5d7da325-8ae6-405f-84ed-361333555266" />
 
-  #Product successfully added using the modified price and PortSwigger completion confirmation:
+
+    #Modified request (price changed to 1) forwarded through Burp Proxy:
+    
+<img width="1013" height="572" alt="Screenshot 2026-10-27 at 8 07 59 AM" src="https://github.com/user-attachments/assets/bee16fbc-8dce-4fee-8bba-6444a080f23b" />
+
+
+    #Product successfully added using the modified price and PortSwigger completion confirmation:
+    
 <img width="1470" height="830" alt="Screenshot 2026-10-26 at 11 23 11 PM" src="https://github.com/user-attachments/assets/aed70a10-8500-4e0c-aee7-709efb2d7076" />
 
 ## Key Learning
