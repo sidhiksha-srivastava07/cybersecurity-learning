@@ -33,7 +33,7 @@ The lab used a deliberately vulnerable shopping website provided by PortSwigger 
 9. Verified that the product was added to the cart using the modified price.
 10. Completed the lab successfully.
 
-## Request Analysis
+## Findings
 
 The intercepted request contained parameters including:
 
@@ -72,8 +72,14 @@ Evidence captured during the exercise includes:
 - Product successfully added using the modified price
 - PortSwigger completion confirmation
 
-<img width="1470" height="830" alt="Screenshot 2026-10-26 at 11 23 11 PM" src="https://github.com/user-attachments/assets/aed70a10-8500-4e0c-aee7-709efb2d7076" />
+  #Intercepted `POST /cart` request and `price` parameter identified in the request:
+<img width="1470" height="956" alt="Screenshot 2026-10-27 at 7 45 51 AM" src="https://github.com/user-attachments/assets/2b92ac0d-31a1-40f6-90f5-daaa60c2ef0d" />
 
+  #Modified request (price changed to 1) forwarded through Burp Proxy:
+<img width="1470" height="956" alt="Screenshot 2026-10-27 at 7 49 16 AM" src="https://github.com/user-attachments/assets/894a5965-f276-4833-8ca9-7ff21c1fd64a" />
+
+  #Product successfully added using the modified price and PortSwigger completion confirmation:
+<img width="1470" height="830" alt="Screenshot 2026-10-26 at 11 23 11 PM" src="https://github.com/user-attachments/assets/aed70a10-8500-4e0c-aee7-709efb2d7076" />
 
 ## Key Learning
 
