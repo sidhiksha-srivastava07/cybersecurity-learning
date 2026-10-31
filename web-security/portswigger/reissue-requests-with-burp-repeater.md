@@ -1,4 +1,4 @@
-<img width="1470" height="839" alt="Screenshot 2026-10-31 at 5 31 25 PM" src="https://github.com/user-attachments/assets/a353f1fb-e100-4878-8e49-29b1d50aec7c" /># Reissuing Requests with Burp Repeater
+# Reissuing Requests with Burp Repeater
 
 ## Platform
 
