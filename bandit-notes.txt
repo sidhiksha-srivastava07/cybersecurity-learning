@@ -1,0 +1,1046 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      
+												    OVERTHEWIRE - BANDIT
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Level 0 -> Level 1
+
+Username: bandit0
+Login Password: bandit0
+
+Goal: The password for the next level is stored in a file called "readme" located in the home directory.
+
+1. What was the problem?
+=> I had to find the password for the next level (bandit1). 
+The challenge told me that the password was inside a file called "readme" in the home directory.
+
+2. What did I notice?
+=> I was already logged into the Bandit machine as bandit0.
+The prompt showed:
+bandit0@bandit:~$
+
+The "~" means I am currently in bandit0's home directory.
+
+3. Which commands did I use?
+=> ls : This listed the files in the current directory.
+It showed:
+readme
+Then I used:
+cat readme : This displayed the contents of the readme file.
+
+4. Why did the command work?
+=> "ls" is used to list files and directories.
+"cat" is used to display the contents of a file.
+Since the challenge told me the password was stored inside "readme", I used "cat readme" to read it.
+
+5. What did I learn?
+=> - "ssh" is Secure Shell
+- use -p <port number> for mentioning ports
+- Linux has a filesystem made up of files and directories.
+- "~" represents the current user's home directory.
+- "ls" lists files/directories.
+- "cat" displays the contents of a file.
+- The terminal prompt tells me which user and machine I am connected to.
+
+Commands used:
+- ssh
+--> ssh bandit0@bandit.labs.overthewire.org -p 2220
+- ls
+- cat readme
+
+6. Login for the next level
+Username: bandit1
+Host: bandit.labs.overthewire.org
+Port: 2220
+
+Command: ssh bandit1@bandit.labs.overthewire.org -p 2220
+
+Password for bandit1: 6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR
+----------------------------------------------------------------
+
+Level 1 -> Level 2
+
+Goal:
+Find password stored in a file whose name begins with "-".
+
+Commands:
+ls
+cat ./- 
+
+Why:
+- "cat": Displays the contents of a file.
+- "./": Tells Linux to look for the file in the current directory.
+
+Learned:
+- "./" means current directory
+
+Password for bandit2: PK8fYLZg2hnHSz83plBL1iEPKdD3QToB
+-----------------------------------------------------------------
+
+Level 2 -> Level 3
+
+Goal:
+Find password stored in a file called --spaces in this filename-- located in the home directory
+
+Commands:
+ls
+cat ./'--spaces in this filename--'
+
+Why:
+- "cat": Displays the contents of a file.
+- "./": Tells Linux to look for the file in the current directory.
+- ' ': Single quotes make Linux treat the entire filename, including its spaces, as one name.
+
+Learned:
+- How to read files whose names contain spaces.
+- How to use single quotes around filenames.
+- ./ refers to the current directory.
+
+Password for bandit3: 7ZZ2LFrykP2zEyvBl4m3clcL7tGYJPME
+------------------------------------------------------------------
+
+Level 3 -> Level 4
+
+Goal:
+Find password stored in a hidden file in the inhere directory
+
+Commands:
+cd inhere
+ls -a
+cat ...Hiding-From-You
+
+Why:
+- "cd inhere": Changes the directory to "inhere" directory. 
+- "ls -a": Lists all files including hidden files. 
+- "cat": Views the content of the file.
+
+Learned:
+- The use of "ls -a" command
+
+Password for bandit4: xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq
+------------------------------------------------------------------
+
+Level 4 -> Level 5
+
+Goal:
+Find password stored in the only human-readable file in the inhere directory [i.e. to read the content of ASCII-type (human-readable) file]
+
+Commands:
+cd inhere
+ls -a
+file ./*
+cat ./-file07
+
+Why:
+"file ./*" lists all the files stored in the directory with their respective data types (like data, ASCII, etc.).
+
+Learned:
+- ASCII file type is human-readable
+- The use of "file./*" command
+
+Password for bandit5: 6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG
+------------------------------------------------------------------
+
+Level 5 -> Level 6
+
+Goal:
+Find password stored in a file somewhere under the inhere directory and has all of the following properties:
+
+human-readable
+1033 bytes in size
+not executable
+
+Commands:
+cd inhere
+ls -a
+find . -size 1033c -type f ! -executable
+cat ./maybehere07/.file2
+
+Why:
+In the command "find . -size 1033c -type f ! -executable" :-
+"." indicates to find files in the current directory ("inhere" in this case)
+"-size 1033c" to find files of size 1033 bytes
+"-type f" to filter for items that are regular files
+"! -executable" to find non-executable files
+
+Learned:
+- Meaning of "find . -size 1033c -type f ! -executable" command and its individual parts
+
+Password for bandit6: pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
+------------------------------------------------------------------
+
+Level 6 -> Level 7
+
+Goal:
+The password for the next level is stored somewhere on the server and has all of the following properties:
+
+owned by user bandit7
+owned by group bandit6
+33 bytes in size
+
+Commands:
+find / -type f -user bandit7 -group bandit6 -size 33c
+cat /var/lib/dpkg/info/bandit7.password
+
+Why:
+In the command "find / -type f -user bandit7 -group bandit6 -size 33c" :-
+"/" indicates to find files in the root directory
+"-user bandit7" to find files owned by this user
+"-group bandit6" to find files owned by this group
+
+Learned:
+- Meaning of "find / -type f -user bandit7 -group bandit6 -size 33c" command and its individual parts
+
+Password for bandit7: Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
+------------------------------------------------------------------
+
+Level 7 -> Level 8
+
+Goal: The password for the next level is stored in the file data.txt next to the word millionth
+
+Commands:
+cat data.txt | grep millionth
+
+Why:
+In the command "cat data.txt | grep millionth" :-
+"|" takes output of previous command and sends it as input into the next command.
+"grep" searches through the text in the file and shows only the lines that have the word millionth in them
+
+Learned:
+- Use of "grep" command
+
+Password for bandit8: VR1ljMayciFxbnUokuQmJFw6QC9VKtub
+------------------------------------------------------------------
+
+Level 8 -> Level 9
+
+Goal: The password for the next level is stored in the file data.txt and is the only line of text that occurs only once
+
+Commands:
+cat data.txt | sort | uniq -u
+
+Why:
+In the command "cat data.txt | sort | uniq -u" :-
+"sort" takes the lines from "cat" and arranges them in alphabetical/numerical order. This is done so that duplicate lines become adjacent because the "uniq" command can only compare consecutive lines.
+"uniq" compares consecutive lines (that appear exactly once in the entire file), which is why I used 'sort' first.
+"uniq -u" commands to only output the unique lines, discarding all the duplicate ones.
+
+Learned:
+- If duplicate lines are scattered throughout a file and not sorted first, "uniq" will not recognize them as duplicates and will fail to filter them out.
+- Since "uniq" possesses no internal memory to track lines it saw earlier, it should always be paired with "sort" if to find or remove duplicates across an entire file.
+
+Password for bandit9: EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
+------------------------------------------------------------------
+
+Level 9 -> Level 10
+
+Goal: The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
+
+Commands:
+cat data.txt | strings | grep =
+
+Why:
+In the command "cat data.txt | strings | grep =" :-
+"strings" scans binary files and extracts only the human-readable text strings.
+"grep =" searches through the extracted text strings and filters the output to only display lines that contain the = character.
+
+Learned:
+- A file named data.txt can actually be a binary file, regardless of its extension.
+- "strings" is the go-to tool to quickly extract human-readable text without needing to understand the underlying binary structure.
+
+Password for bandit10: B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+------------------------------------------------------------------
+
+Level 10 -> Level 11
+
+Goal: The password for the next level is stored in the file data.txt, which contains base64 encoded data.
+
+Commands:
+cat data.txt | base64 -d
+
+Why:
+In the command "cat data.txt | base64 -d" :-
+In "base64 -d", the "-d" (or "-decode") instructs the system to reverse the encoding process and convert the text back into its original, plain-text form.
+
+Learned:
+- Base64 is a binary-to-text encoding that translates raw data into 64 printable characters.
+
+Password for bandit11: pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+------------------------------------------------------------------
+
+Level 11 -> Level 12
+
+Goal: The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+Commands:
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+Why:
+In the command "cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'" :-
+"tr"(translate) translates or deletes characters from input. It basically replaces specific characters with new ones based on their position in a list.
+In "tr 'A-Za-z' 'N-ZA-Mn-za-m'", "tr" translates characters by shifting them. Capital letters A-M shift to N-Z, and N-Z to A-M. Lowercase letters a-m shift to n-z, and n-z to a-m.
+'A-Za-z': This is the Search Set (Set 1). It defines the entire English alphabet, preserving upper and lower case.
+'N-ZA-Mn-za-m': This is the Replace Set (Set 2). It maps out where each corresponding letter should land after a 13-step rotation.
+
+Learned:
+- The "tr" command maps characters strictly by their positional index in a one-to-one set.
+
+Password for bandit12: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
+------------------------------------------------------------------
+
+Level 12 -> Level 13
+
+Goal: The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv.
+
+Commands:
+cd $(mktemp -d)
+cp ~/data.txt .
+xxd -r data.txt > compressed_file
+file compressed_file
+mv compressed_file compressed_file.gz
+gunzip compressed_file.gz
+mv compressed_file compressed_file.bz2
+bunzip2 compressed_file.bz2
+tar -xf compressed_file
+ls
+cat data8.bin
+
+Why:
+- "cd $(mktemp -d)": "mktemp" means make temporary file. "-d" tells it to make a directory. "mktemp -d" creates a temporary directory. This command is used to create a secure, private working directory since we cannot create or modify files directly in the home directory due to permission restrictions.
+- "cp ~/data.txt .": Copying the file data.txt from my home directory (~) and copy it right here (.) into my current folder.
+- "xxd -r data.txt > compressed_file": "xxd" - This is a tool used to work with hex dumps. "-r (Reverse)" - This flag tells the tool to do the exact reverse of its normal job. Instead of turning a file into hex text, it reads the hex text inside data.txt and converts it back into raw computer data (bytes).
+- "file compressed_file": To get exact information about the file.
+- "mv compressed_file compressed_file.gz": If the file is gzip compressed data, then rename the file using this command.
+- "gunzip compressed_file.gz": Unzip the gzip compressed data file using this command.
+- "mv compressed_file compressed_file.bz2": If the file is bzip2 compressed data, then rename the file using this command.
+- "bunzip2 compressed_file.bz2": Unzip the bzip2 compressed data file using this command.
+- "tar -xf compressed_file": If the file is POSIX tar archive, then extract the contents using this command. "tar" is used to bundle files together. "-x" is for extracting/unpacking the bundled files. "f" (file) is used right before mentioning the filename. After running this command, it extracts whatever is hidden inside the file "compressed_file", and drops those new items right into my current folder. After this run "ls" command to see what new file appeared.  
+- Every time I unzipped a file, I ran the "file" command on the new file I just created. I kept renaming and unzipping it until the file command finally said: ASCII text. Once I saw "ASCII text", I could read the password using "cat data8.bin (filename)".
+
+Learned:
+- Run 'file' to see what the data actually is. Use the suitable tool (gunzip, bunzip2, tar) to unpack it. Check the new output file and repeat until we hit plain text.
+
+Password for bandit13: qQYQiHOBPR8zR61qxYqX45quvihF2uzk
+------------------------------------------------------------------
+
+Level 13 -> Level 14
+
+Goal: The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level.
+
+Commands:
+cat sshkey.private [On the OverTheWire server as bandit13]
+nano bandit14.key [On local machine terminal] 
+(Paste the copied private key text, then save and exit)
+chmod 600 bandit14.key
+ssh bandit14@bandit.labs.overthewire.org -p 2220 -i bandit14.key
+cat /etc/bandit_pass/bandit14
+
+Why:
+- "cat sshkey.private" :- Prints the raw text of the RSA Private SSH Key onto the screen. This file acts as a cryptographic credential rather than a plain text password.
+- "nano bandit14.key" :- Opens a local text editor on my computer. This lets me paste and save the private key text onto my local machine so I could use it to authenticate to the next level.
+- "chmod 600 bandit14.key" :- Restricts the local key file permissions so that only the owner can read or write it. OpenSSH automatically blocks and rejects any key files that are readable or too exposed.
+- "ssh bandit14@bandit.labs.overthewire.org -p 2220 -i bandit14.key" :- It establishes an SSH connection using the private key. The "-p 2220" routes the packet through the specific custom game port, and "-i" passes the local key to validate authentication without a password string prompt.
+- "cat /etc/bandit_pass/bandit14" :- Once logged in as bandit14, this prints out the raw text password for the next level from its protected system location.
+
+Learned:
+- I learned how to save an SSH private key in a file and use 'chmod 600' to restrict its permissions. SSH requires private keys to be protected from access by other users.
+- Servers can be configured to authorize entries using a Private/Public cryptographic key pairing instead of relying on manually typed passwords. This was my first experience using an SSH private key to log in to another Bandit level.
+- Private key files require strict system permissions ('chmod 600') to be recognized as valid and secure by the local OpenSSH engine.
+
+Password for bandit14: aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+------------------------------------------------------------------
+
+Level 14 -> Level 15
+
+Goal: The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
+
+Commands:
+nc localhost 30000
+
+Why:
+- "nc" (netcat) is a networking tool used to send and receive data across network connections.
+
+Learned:
+- A server has unique numeric ports to receive input without using traditional login screens.
+- Netcat sends raw text data. It establishes a direct connection to a network port and passes plain text back and forth without any added formatting or encryption.
+
+Password for bandit15: pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
+------------------------------------------------------------------
+
+Level 15 -> Level 16
+
+Goal: The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL/TLS encryption.
+
+Commands:
+openssl s_client -connect localhost:30001
+
+Why:
+- "openssl" :- This is the main program. It is a toolkit packed with features for handling encryption, security certificates, and secure connections.
+- "s_client" :- A specific tool inside OpenSSL (the "s" stands for Secure) that tells the system to behave like a secure client capable of setting up encrypted communication tunnels and knows how to do handshakes.
+- "-connect" :- An instruction flag that tells the s_client tool to go active and target a specific address.
+- "localhost:30001" :- Target address.
+
+Learned:
+- Standard networking tools like Netcat (nc) transmit data in clear text and cannot perform the cryptographic handshakes required by SSL/TLS. Secure services require data to be hidden inside an encrypted form using SSL/TLS technology so outsiders cannot read it.
+- Before data can travel securely, the client and server complete an automated handshake. This is where they introduce themselves, verify digital ID cards (certificates) to prevent impostors, and safely agree on a secret key to lock and unlock the communication channel.
+- Establishing a secure, encrypted connection only opens the communication channel. We must still manually submit the current level password over that secure tunnel to prove our identity and progress to the server before it will hand over the next password.
+
+Password for bandit16: kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V
+------------------------------------------------------------------
+
+Level 16 -> Level 17
+
+Goal: The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
+
+Commands:
+nmap -p 31000-32000 localhost
+
+openssl s_client -connect localhost:31000
+openssl s_client -connect localhost:31518
+openssl s_client -connect localhost:31691
+openssl s_client -connect localhost:31790
+openssl s_client -connect localhost:31960
+
+openssl s_client -quiet -connect localhost:31790
+exit
+nano ~/band17.key
+{Paste the complete SSH private key received from the server}
+chmod 600 ~/band17.key
+ssh -i ~/band17.key bandit17@bandit.labs.overthewire.org -p 2220
+
+Why:
+- "nmap" :- A network exploration and security auditing tool used to discover hosts, open ports and services running on a network.
+- "-quiet" :- Reduces output by suppressing much of the connection information, making it easier to interact with the server.
+- "exit" :- Terminates the current shell session and returns to the local terminal.
+- "~/band17.key" :- The file created in my Mac's home directory to store the SSH private key.
+
+Learned:
+- I learned how to use Nmap to scan a range of ports instead of checking them one by one. It shows which ports are open and have services running on them. An open port indicates that a service is listening and accepting connections.
+- Just because a port is open doesn't mean it uses SSL/TLS. An open port only tells us that a service is listening on that port.
+- I learned how to use `openssl s_client` to check whether a server supports SSL/TLS. If the TLS handshake succeeds and a cipher is negotiated, it means a secure connection has been established.
+- Not every SSL/TLS-enabled port gives us the next password. Some services simply return the same data that we send to them. So, after finding the TLS-enabled ports, I had to interact with them to identify the correct service.
+- The correct port (31790) accepted my Bandit 16 password and returned an SSH private key instead of a normal password. 
+- I learned that an SSH private key and a digital certificate are not the same thing. The private key is used for authentication, while a certificate contains information about an identity and its associated public key.
+- I learned that I had to exit Bandit 16 and return to my Mac's terminal because I needed to save the SSH private key on my own computer and use it to log in to Bandit 17. I initially received the SSH private key while connected to the remote server. But I needed to save that key on my own computer and I had to use my local terminal to connect with the saved key to connect to Bandit 17.
+- Finally, I learned that SSH login doesn't always require a password. It can also use a private key for authentication, which is what happened in this level.
+
+For bandit17: ssh -i ~/band17.key bandit17@bandit.labs.overthewire.org -p 2220
+------------------------------------------------------------------
+
+Level 17 -> Level 18
+
+Goal: There are 2 files in the home directory :- passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
+
+Commands:
+ls
+diff passwords.old passwords.new
+
+Why:
+"diff" :- Compares files line by line and highlights the differences between them.
+
+Learned:
+- I learned that the diff command is a highly efficient way to compare two similar files to find changes instead of reading through them manually.
+- The output of diff uses specific indicators; a less-than sign (<) points to a particular data from the first file, while a greater-than sign (>) points to a particular data from the second file.
+- The line with the greater-than sign (>) is the required password for the next level.
+
+Password for bandit18: OQxXZjELndr90zuhOTDYBEomI0SZITXI
+------------------------------------------------------------------
+
+Level 18 -> Level 19
+
+Goal: The password for the next level is stored in a file readme in the home directory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
+
+Commands:
+ssh bandit18@bandit.labs.overthewire.org -p 2220 "cat readme"
+
+Why:
+""cat readme"" :- Writing a command in quotes at the end of the SSH command forces the server to execute that specific command and display the output immediately upon connection, bypassing the modified .bashrc logon script before it can force a logout.
+
+Learned:
+I learned that when an SSH connection forces an immediate logout through a modified .bashrc, you can bypass the immediate logout by passing a command directly at the end of your SSH command.
+
+Password for bandit19: KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI
+------------------------------------------------------------------
+
+Level 19 -> Level 20
+
+Goal: To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
+
+Commands:
+ls -la
+./bandit20-do
+./bandit20-do cat /etc/bandit_pass/bandit20
+
+Why:
+- "ls -la": List all the files in the current directory, including hidden files, which reveals the 'bandit20-do' binary.
+- "./bandit20-do": Running the binary without arguments displays a message explaining that it executes commands as the bandit20 user. The './' prefix tells the shell to look for and execute a file in the current working directory. 
+
+Learned:
+- I learned that a setuid (Set User ID) binary runs with the permissions of the file's owner rather than the person running it. In this level, the binary file is owned by 'bandit20'. When I execute it, the program runs with bandit20 permissions, allowing it to look inside files we normally can't access.
+- This method allows a regular user to safely perform specific actions that normally require higher access levels.
+- Running a program with no arguments is an easy way to check its instructions and see what it does, as seen in "./bandit20-do" command.
+
+Password for bandit20: 4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
+------------------------------------------------------------------
+
+Level 20 -> Level 21
+
+Goal: There is a setuid binary in the home directory that does the following: it makes a connection to localhost on the port you specify as a command line argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+
+Commands:
+echo '4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA' | nc -l -p 1234 &
+./suconnect 1234
+
+Why:
+- "echo '4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA'": Sends the current password into the listening port so it is ready to be read when a connection happens.
+- "nc -l -p 1234 &": Starts a background network listener on port 1234 to wait for incoming connections. '-l' stands for Listen. It tells netcat to wait for an incoming connection. '&' tells the terminal to run the entire command in the background. It keeps the program running in the background so we can run other commands while the command is executing in the same terminal. 
+- "./suconnect 1234": Runs the program and tells it to connect to the port 1234, letting it read the password and print the new one.
+
+Learned:
+- I learned that netcat (nc) can act as a listener to open up communication channels directly on a network port.
+- Two different programs running on the same computer can talk and share text data with each other using 'localhost' and a shared port number.
+
+Password for bandit21: bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY
+------------------------------------------------------------------
+
+Level 21 -> Level 22
+
+Goal: A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
+
+Commands:
+ls -la /etc/cron.d/
+cat /etc/cron.d/cronjob_bandit22
+cat /usr/bin/cronjob_bandit22.sh
+cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+Why:
+- "ls -la /etc/cron.d/": This directory holds the lists of automatic timer tasks. We look here to see what automatic tasks are set up on the system.
+- "cat /etc/cron.d/cronjob_bandit22": Reading this text file tells us exactly what the automatic timer is doing. It shows us that it runs a script located at '/usr/bin/cronjob_bandit22.sh' every single minute.
+- "cat /usr/bin/cronjob_bandit22.sh": Reading this script lets us see the code inside it. The code reveals that the computer automatically copies the hidden bandit22 password and saves it into a temporary text file.
+- "cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv": Reading this temporary file (the path we copied out of the script) prints out the final password.
+
+Learned:
+- Linux systems use a tool called 'cron' to run scripts automatically in the background without human intervention.
+- By reading the code of these background scripts, you can find out where they are saving secret data.
+- Cron is the service that handles scheduled tasks. A cron job is an individual task scheduled to run through it.
+
+Password for bandit22: RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz
+------------------------------------------------------------------
+
+Level 22 -> Level 23
+
+Goal: A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed. NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.
+
+Commands:
+ls -la /etc/cron.d/
+cat /etc/cron.d/cronjob_bandit23
+cat /usr/bin/cronjob_bandit23.sh
+echo "I am user bandit23" | md5sum | cut -d ' ' -f 1
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+
+Why:
+- "cat /usr/bin/cronjob_bandit23.sh": I opened this script to understand what it was actually doing. I found that it checks the current username, generates an MD5 hash and uses that hash to create a temporary filename in the format => echo I am user $myname | md5sum | cut -d ' ' -f 1 . It then copies the user's password into that temporary file.
+- "echo "I am user bandit23" | md5sum | cut -d ' ' -f 1": I used this command to generate the same MD5 hash as the script. Since the script runs as bandit23, the text used to generate the hash is I am user bandit23. The cut command helps me get only the hash from the output.
+- "cat /tmp/8ca319486bfbbc3663ea0fbe81326349": After getting the hash, I used it as the temporary filename and opened that file. This file contained the password that the script had copied.
+
+Learned:
+- I learned that a cron job can run a script as a particular user. In this level, the script was running as bandit23, which is why it was working with the Bandit 23 password file.
+- I learned that 'whoami' (in the output of the command "cat /usr/bin/cronjob_bandit23.sh") tells us the username of the person or account running a command. The script used it to find out which user's password it needed to copy. Since the cron job runs as 'Bandit 23', the text becomes 'I am user bandit23'.
+- I learned that md5sum generates a hash from given text. Since the script itself uses an MD5 hash to generate the temporary filename, I needed to generate the same hash to find that file.
+- I also learned that reading a script can help me understand what a program is doing in the background instead of just running commands without knowing their purpose.
+- I learned how to follow an automatically running script, understand how it creates a temporary filename and find the file where it stores the required password.
+- I learned that we can't directly open the password file because the script was copying the password into a temporary file with a hash-based filename and the challenge was to understand how that filename was generated and locate the copied password.
+
+Password for bandit23: gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw
+------------------------------------------------------------------
+
+Level 23 -> Level 24
+
+Goal: A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed. NOTE: This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level! NOTE 2: Keep in mind that your shell script is removed once executed, so you may want to keep a copy around.
+
+Commands:
+ls -la /etc/cron.d/
+cat /etc/cron.d/cronjob_bandit24
+cat /usr/bin/cronjob_bandit24.sh
+nano /tmp/getpass.sh
+{INSIDE getpass.sh shell script:
+
+#!/bin/bash
+
+cat /etc/bandit_pass/bandit24 > /tmp/bandit24_password
+chmod 644 /tmp/bandit24_password
+}
+chmod +x /tmp/getpass.sh
+cp /tmp/getpass.sh /var/spool/bandit24/foo/
+cat /tmp/bandit24_password
+
+Why:
+- "ls -la /etc/cron.d/": I used this command to see the files inside /etc/cron.d/. I was looking for the cron job related to Bandit 24.
+- "cat /etc/cron.d/cronjob_bandit24": I opened this file to find out which script the cron job runs and how often it runs. I found that it runs the Bandit 24 script every minute.
+- "cat /usr/bin/cronjob_bandit24.sh": I opened the actual script to understand what it does. I found that it checks the folder /var/spool/bandit24/foo, executes suitable scripts found there, and then deletes them.
+- "nano /tmp/getpass.sh": I used Nano to create my own shell script. I saved it in /tmp so that I could keep my original copy separately.
+- "#!/bin/bash": This tells the system to use Bash to run my script.
+- "cat /etc/bandit_pass/bandit24 > /tmp/bandit24_password": This command reads the Bandit 24 password file and saves its contents in a new file called bandit24_password inside /tmp. The > symbol creates the file if it does not already exist.
+- "chmod 644 /tmp/bandit24_password": The script runs as Bandit 24, so the output file is created with Bandit 24 as its owner. I used chmod 644 to allow all local users, including Bandit 23, to read the file. The owner gets read and write permission, while the group and others get read permission. 
+- "chmod +x /tmp/getpass.sh": I used this command to give my script execute permission. Without this permission, the cron job would not be able to execute it as intended. "+x" in "chmod +x" adds execute permission.
+- "cp /tmp/getpass.sh /var/spool/bandit24/foo/": I copied my script from /tmp into the folder that the cron job checks (/var/spool/bandit24/foo/). I kept the original copy in /tmp because the cron job deletes the copy it processes.
+- "cat /tmp/bandit24_password": After the cron job executed my script, I used this command to read the temporary file and get the Bandit 24 password.
+
+Learned:
+- I learned that a shell script is a file in which we can write multiple commands and execute them together.
+- I understood that 'nano' can be used to create and edit files directly from the terminal.
+- I learned that 'chmod +x' gives a file permission to execute. Creating a script and making it executable are two different things.
+- I learned that 'cron' runs scheduled tasks automatically. We don't have to manually start those tasks every time.
+- I learned that reading an existing script before using it helps me understand what a program is doing and how I can work with it.
+- I learned that 'cp' is used to copy a file from one location to another. In this level, I kept my original script separately because the cron job deletes the copy it processes, and I copied my script into the folder checked by the cron job.
+- I learned that the '>' symbol saves the output of a command into a file. It can also create that file if it doesn't already exist.
+- I understood why file permissions are important. Even if a file exists, another user may not be allowed to read it.
+- I learned that 'chmod 644' gives the owner read and write permission, while the group and other users get read permission only.
+- I learned that file ownership matters when a program checks which files it is allowed to execute. In this level, the script checked whether the submitted files were owned by bandit23.
+- This was my first time creating my own shell script and using an automatically running cron job to complete a task.
+- The reason I used chmod 644 instead of just creating the password file is because the script was executed by Bandit 24, so the password file was created with Bandit 24 as its owner. I was logged in as Bandit 23, so I needed to give Bandit 23 permission to read that file. That's why I used chmod 644.
+- The reason I used chmod +x separately is that writing a script doesn't automatically give it permission to execute. I used chmod +x to make the script executable so the cron job could run it.
+- The reason behind the need to create my own shell script is that the cron job was designed to automatically run scripts placed in a particular folder. I needed to give it my own instructions so that it could copy the Bandit 24 password into a temporary file that I could read.
+
+Password for bandit24: hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv
+------------------------------------------------------------------
+
+Level 24 -> Level 25
+
+Goal: A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing. You do not need to create new connections each time.
+
+Commands:
+for i in {0000..9999}; do echo "YOUR_BANDIT24_PASSWORD $i"; done | nc localhost 30002
+
+Why:
+- "for i in {0000..9999}": I used this to generate all possible 4-digit PINs, starting from 0000 and ending at 9999. 'for' loop allows us to repeat something without typing it again and again.
+- "do echo "YOUR_BANDIT24_PASSWORD $i"": This combines the Bandit 24 password with each PIN in the format required by the program.
+- do and done: These mark the beginning and end of the loop.
+- | : This sends the output generated by the loop directly to the next command.
+- "nc localhost 30002": I used Netcat to connect to the program running on port 30002 and send it the combinations.
+
+Learned:
+- I learned that a 'for' loop can repeat a command for a given set of values instead of making me type every value manually.
+- I understood how a variable like 'i' changes its value during each round of a loop.
+- I learned that 'echo' is used to display text and can also be used to prepare the input that we want to send to another program.
+- I learned that the '|' symbol, called a pipe, passes the output of one command as input to another command.
+- I understood that Netcat (nc) can be used to connect to a particular port and exchange information with the network service running on it.
+- I learned that trying all possible combinations of a password or PIN until the correct one is found is called brute-forcing.
+- I also understood that multiple inputs can be sent through a single network connection when we give command to accept them.
+
+Password for bandit25: SoHfqMOEqIX2IYKVciZxvgpR9a2Djx4P
+------------------------------------------------------------------
+
+Level 25 -> Level 26
+
+Goal: The shell for user bandit26 is not /bin/bash, but something else. Find out what it is, how it works and how to break out of it.
+
+Commands:
+scp -P 2220 bandit25@bandit.labs.overthewire.org:/home/bandit25/bandit26.sshkey .
+ls -la
+chmod 600 bandit26.sshkey
+{MINIMIZE THE TERMINAL WINDOW TO MAKE IT VERY NARROW}
+ssh -i bandit26.sshkey bandit26@bandit.labs.overthewire.org -p 2220
+{Inside the 'more' screen}
+v
+{Inside the vi editor}
+escape key (esc)
+:e /etc/bandit_pass/bandit26
+
+Why:
+- "scp -P 2220 bandit25@bandit.labs.overthewire.org:/home/bandit25/bandit26.sshkey .": SCP stands for Secure Copy Protocol. It copies files between computers over an SSH connection. I used this command to copy the private SSH key from the Bandit server to my local system. I needed this key because it is used to log in as bandit26. The -P 2220 part tells SCP to use port 2220, and the . at the end means that the file should be saved in my current directory.
+- "ls -la": I used this command to check whether the private key had been downloaded successfully. It also showed me details such as file permissions, ownership and file size.
+- "chmod 600 bandit26.sshkey": I used this to restrict access to the private key. The number 600 means that only my user can read and write the file. Other users cannot access it. This is important because private keys should not be accessible to everyone.
+- "ssh -i bandit26.sshkey bandit26@bandit.labs.overthewire.org -p 2220": I used this command to log in as bandit26. The -i option tells SSH to use the private key file for authentication instead of asking for the account password.
+- Pressing v inside 'more': After logging in, a text screen appeared because bandit26 uses an unusual login shell. The challenge specifically tells us that Bandit 26 does not use the normal Bash shell. A normal Linux level might get /bin/bash after logging in. But Bandit 26 uses a different program called 'more' to display a text file and then exit. 'more' is a program that displays text one screen at a time. In this challenge, the terminal was initially too large, so 'more' displayed the small text file and finished immediately. The SSH connection then closed. When I made the terminal window very short and narrow, 'more' had to pause and wait for input. That's why resizing the terminal was important since it made 'more' to stay open. I then pressed 'v', which opened the text in the vi editor.
+- Pressing 'esc': I pressed Escape to enter the normal mode of the vi editor. This allowed me to enter an editor command instead of typing ordinary text.
+- ":e /etc/bandit_pass/bandit26": I used this command inside vi to open the file containing the bandit26 password. Here, :e means edit or open a file, and the remaining part is the file's location. The password was displayed after the file opened.
+
+Learned:
+- I learned that scp can be used to copy files between two computers. It is useful when I need to transfer a file from a remote server to my own machine.
+- I learned that uppercase -P and lowercase -p do different things in SCP. Even a small difference in a command can change what it does. I initially used lowercase -p by mistake. In SCP, uppercase -P is used to specify the port, whereas lowercase -p is used to preserve the original file's configuration and permissions. This is why my first copy attempt did not work correctly.
+- I learned that a private SSH key can be used to log in to an account instead of entering its password. The key must also have proper permissions.
+- I understood that 'more' is used to display text one screen at a time. It pauses when the content cannot fit on the screen.
+- I learned that pressing 'v' inside 'more' can open the displayed text in the vi editor.
+- I learned that in vi pressing Esc takes me back to normal mode, where I can enter editor commands.
+- I learned that :e is an editor command used to open another file. In this level, I used it to open the file containing the bandit26 password.
+- I understood from this level that I should not assume every SSH login will give me a normal terminal. It is important to understand which program is being used as the user's shell and what that program actually does.
+
+Password for bandit26: jHdv2ELQhT22BkprMNDjybZDAkw1zeBJ
+------------------------------------------------------------------
+
+Level 26 -> Level 27
+
+Goal: Good job getting a shell! Now hurry and grab the password for bandit27!
+
+Commands:
+{MINIZE THE TERMINAL WINDOW TO MAKE IT VERY NARROW}
+ssh bandit26@bandit.labs.overthewire.org -p 2220
+{password for bandit26}
+{Inside the 'more' screen}
+v
+{Inside the vi editor}
+:set shell=/bin/bash
+:shell
+{After entering the usual bash shell for bandit26}
+ls
+./bandit27-do cat /etc/bandit_pass/bandit27
+
+Why:
+- Minimizing the terminal: Bandit26 uses an unusual login shell called 'more' instead of a normal Bash shell. Making the terminal window very small causes the text to be displayed through 'more'.
+- Pressing v: I pressed v while inside more. This opened the text in the vi editor.
+- ":set shell=/bin/bash": I used this command inside vi to change the shell that vi uses to /bin/bash. This is needed because the default shell for bandit26 was not a normal Bash shell.
+- ":shell": I used this command to open a shell from inside vi. This allowed me to get a normal Bash shell instead of being restricted to the unusual login shell.
+- "ls": I used this command to list the files in the current directory. It showed a file named 'bandit27-do'.
+- "./bandit27-do cat /etc/bandit_pass/bandit27": I used this command to run the 'bandit27-do' program and read the Bandit 27 password file. The program allows the command to run with bandit27's permissions, which is why I could retrieve the next level's password.
+
+Learned:
+- I learned that not every SSH login opens a normal Bash shell. Sometimes, a user can be given a different shell when they log in.
+- I learned that 'more' is used to display text one screen at a time. In this level, it appeared because of the unusual login shell used by bandit26.
+- I learned that ':set shell=/bin/bash' changes the shell used by vi to Bash.
+- I learned that ':shell' can be used inside vi to open a shell. This was the main step that helped me get out of the restricted login screen.
+- I also learned that commands starting with ':' inside vi are editor commands, not normal terminal commands.
+- I learned that ./ is used to run a file from the current directory. This is how I ran the bandit27-do program.
+- I learned that some programs can run commands with the permissions of another user (permissions of their owner instead of the user running them) using SUID (Set User ID). In this level, 'bandit27-do' runs commands with bandit27's permissions, which allowed me to access the Bandit 27 password file belonging to bandit27. The 'bandit27-do' program is configured to run commands with bandit27's permissions, even though I was logged in as bandit26.
+
+Password for bandit27: STJLJBRRphMxKB392CT4iOr5CbzPU9ER
+------------------------------------------------------------------
+
+Level 27 -> Level 28
+
+Goal: There is a git repository at ssh://bandit27-git@bandit.labs.overthewire.org/home/bandit27-git/repo via the port 2220. The password for the user bandit27-git is the same as for the user bandit27. From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
+
+Commands:
+git clone ssh://bandit27-git@bandit.labs.overthewire.org:2220/home/bandit27-git/repo
+ls
+cd repo
+ls -la
+cat README
+
+Why:
+- "git clone ssh://bandit27-git@bandit.labs.overthewire.org:2220/home/bandit27-git/repo": I used this command to download a copy of the Git repository to my local machine. I used this command in my local terminal and not as bandit27. This was important because the challenge specifically required me to clone the repository on my own machine, not inside the OverTheWire server. The command uses SSH to connect to bandit.labs.overthewire.org as the user bandit27-git. The :2220 specifies the SSH port used by OverTheWire. Although I was logging in as bandit27-git, I used the password of bandit27, because the challenge states that both accounts have the same password. The remaining path, /home/bandit27-git/repo, specifies the location of the Git repository on the server. The git clone command then downloaded a copy of that repository into my local machine. I logged in as bandit27-git using the Bandit27 password.
+- "ls": I used this command to check the files and folders in my current directory. It showed the newly created 'repo' folder.
+- "cd repo": I used this command to enter the cloned repository folder.
+- "ls -la": I used this command to see all the files in the repository, including hidden files. It showed the "README" file.
+- "cat README": I used this command to display the contents of the README file. It contained the password for the next level.
+
+Learned:
+- I learned how to use git clone to download a copy of a Git repository to my local computer.
+- I understood that a Git repository can be accessed over SSH using a username, server address, port number and password.
+- I learned that I should clone the repository on my own machine, not from inside the OverTheWire server.
+- I learned that a README file can contain useful information, and I can use 'cat README' to read it directly in the terminal.
+
+Password for bandit28: y8Yd2ssKcpHpud7UvOSOxwamRMzIGIeQ
+------------------------------------------------------------------
+
+Level 28 -> Level 29
+
+Goal: There is a git repository at ssh://bandit28-git@bandit.labs.overthewire.org/home/bandit28-git/repo via the port 2220. The password for the user bandit28-git is the same as for the user bandit28. From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
+
+Commands:
+git clone ssh://bandit28-git@bandit.labs.overthewire.org:2220/home/bandit28-git/repo
+ls
+cd repo
+ls -la
+cat README.md
+git log
+git show df10da19c2625f7c59e071e16030bd587d8c409d:README.md
+
+Why:
+- "git clone ssh://bandit28-git@bandit.labs.overthewire.org:2220/home/bandit28-git/repo": I used this command in my local terminal to download a copy of the Git repository. It connects to the server using SSH as the user bandit28-git. The :2220 specifies the SSH port. Although I was logging in as bandit28-git, I used the Bandit28 password because the challenge stated that both accounts have the same password. The remaining path specifies the location of the Git repository on the server. The git clone command then downloaded a copy of that repository into my local machine. I logged in as bandit28-git using the Bandit28 password.
+- "ls": I used this command to check the files and folders in my current directory. It showed the newly created 'repo' folder.
+- "cd repo": I used this command to enter the cloned repository folder.
+- "ls -la": I used this command to see all the files in the repository, including hidden files. It showed the "README.md" file.
+- "cat README.md": I used this command to read the README.md file. It contained the username bandit29, but the password was hidden and replaced with xxxxxxxxxx.
+- "git log": I used this command to view the commit history of the repository since even if information is removed from a file, it may still be available in an older commit. It showed three commits: fix info leak, add missing data and initial commit of README.md.
+- "git show df10da19c2625f7c59e071e16030bd587d8c409d:README.md": I used this command to view the earlier commit named 'add missing data' of the README.md file. The latest version had the password hidden, but the older version still contained it. This is how I found the Bandit 29 password.
+
+Learned:
+- I learned that 'git log' shows the previous commits made to a repository. It helped me understand that Git keeps a history of changes.
+- I learned that 'git show' can be used to view the contents of a file from an older commit.
+- I understood that removing information from the latest version of a file does not necessarily remove it from the entire Git history. An older commit may still contain that information.
+- Overall, I learned how to look through the Git history and find information that was no longer visible in the latest version of a file.
+
+Password for bandit29: Em7eGtqaMySwNFjCpwzzHhLhospOcdt0
+------------------------------------------------------------------
+
+Level 29 -> Level 30
+
+Goal: There is a git repository at ssh://bandit29-git@bandit.labs.overthewire.org/home/bandit29-git/repo via the port 2220. The password for the user bandit29-git is the same as for the user bandit29. From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
+
+Commands:
+git clone ssh://bandit29-git@bandit.labs.overthewire.org:2220/home/bandit29-git/repo
+ls
+cd repo
+ls -la
+cat README.md
+git branch -a
+git checkout dev
+cat README.md
+
+Why:
+- "git clone ssh://bandit29-git@bandit.labs.overthewire.org:2220/home/bandit29-git/repo": I used this command in my local terminal to download a copy of the Git repository. It connects to the server using SSH as the user bandit29-git. The :2220 specifies the SSH port. Although I was logging in as bandit29-git, I used the Bandit29 password because the challenge stated that both accounts have the same password. The remaining path specifies the location of the Git repository on the server. The git clone command then downloaded a copy of that repository into my local machine. I logged in as bandit29-git using the Bandit29 password.
+- "ls": I used this command to check the files and folders in my current directory. It showed the newly created 'repo' folder.
+- "cd repo": I used this command to enter the cloned repository folder.
+- "ls -la": I used this command to see all the files in the repository, including hidden files. It showed the "README.md" file.
+- "cat README.md": I used this command to read the README.md file. It contained the username bandit30, but the password was '<no passwords in production!>'.
+- "git branch -a": I used this command to see all available local and remote branches. It showed me that there were two additional branches: dev and sploits-dev. Local branches are the branches available in my downloaded copy of the repository on my local machine, while remote branches are branches from the original repository on the OverTheWire server. In the output, 'origin' is the name git automatically gives to the remote repository when I clone it. 
+- "git checkout dev": I used this command to switch from the master branch to the dev branch. 'origin/dev':- This represents the dev branch from the remote repository. When I used 'git checkout dev', I switched to a local copy of that branch so I could view its contents.
+- "cat README.md": I checked the README file again after switching branches. This time, it contained the password for Bandit 30.
+
+Learned:
+- I learned that a git repository can have multiple branches, and each branch can contain different versions of files.
+- I learned that 'git branch -a' can be used to see all the branches available in a repository, including local and remote branches, which helps me find branches that I might not be using currently.
+- I understood that the master branch is not necessarily the only place where useful information is stored.
+- I learned how to switch from one branch to another using git checkout.
+- I also understood that the same file can contain different content in different branches. In this level, the README file had different content after I switched to the dev branch.
+- Overall, I learned that checking the available branches is important when exploring a git repository because the information I need might not be present in the current branch.
+- I learned the difference between local and remote branches. Local branches are present in my copy of the repository on my computer, while remote branches represent branches available in the original repository on the OverTheWire server.
+- I also learned that 'origin' is the default name git gives to the remote repository when I clone it. For example, origin/dev refers to the remote repository's dev branch.
+
+
+Password for bandit30: jq9Dfg2rXsfYsWMgFuKlXhphjdH7USgX
+------------------------------------------------------------------
+
+Level 30 -> Level 31
+
+Goal: There is a git repository at ssh://bandit30-git@bandit.labs.overthewire.org/home/bandit30-git/repo via the port 2220. The password for the user bandit30-git is the same as for the user bandit30. From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
+
+Commands:
+git clone ssh://bandit30-git@bandit.labs.overthewire.org:2220/home/bandit30-git/repo
+ls
+cd repo
+ls -la
+cat README.md
+git branch -a
+git log
+git tag
+git show secret
+
+Why:
+- "git clone ssh://bandit30-git@bandit.labs.overthewire.org:2220/home/bandit30-git/repo": I used this command in my local terminal to download a copy of the Git repository. It connects to the server using SSH as the user bandit30-git. The :2220 specifies the SSH port. Although I was logging in as bandit30-git, I used the Bandit30 password because the challenge stated that both accounts have the same password. The remaining path specifies the location of the Git repository on the server. The git clone command then downloaded a copy of that repository into my local machine. I logged in as bandit30-git using the Bandit30 password.
+- "ls": I used this command to check the files and folders in my current directory. It showed the newly created 'repo' folder.
+- "cd repo": I used this command to enter the cloned repository folder.
+- "ls -la": I used this command to see all the files in the repository, including hidden files. It showed the "README.md" file.
+- "cat README.md": I used this command to read the README.md file. The README.md just mentioned that it's an empty file.
+- "git branch -a": I used this command to check the available local and remote branches.
+- "git log": I used this command to check the commit history of the repository.
+- "git tag": I used this command to list the tags available in the repository. It showed a tag named 'secret'.
+- "git show secret": I used this command to view the information stored in the 'secret' tag. It displayed the password for Bandit 31.
+
+Learned:
+- I understood that git repositories can contain useful information even when the README file does not directly provide it.
+- I learned about git tags. A tag is a name or label given to an important commit in a git repository. It is commonly used to mark important versions, releases or steps of a project.
+- I learned that 'git tag' command displays the tags available in a repository.
+- I learned that 'git show' command can be used to view information associated with a tag. In this level, I used 'git show secret' command to find the next password.
+- I learned the difference between the three git features: Branch - Separate different lines of development and versions where we can make changes; Commit - A saved change in the repository; Tag - A label used to identify a particular commit. A tag is not another branch. It is simply a label for identifying a commit.
+
+Password for bandit31: 82NkymblpGBYmIXG6ZQ8YldBYstHpfUf
+------------------------------------------------------------------
+
+Level 31 -> Level 32
+
+Goal: There is a git repository at ssh://bandit31-git@bandit.labs.overthewire.org/home/bandit31-git/repo via the port 2220. The password for the user bandit31-git is the same as for the user bandit31. From your local machine (not the OverTheWire machine!), clone the repository and find the password for the next level. This needs git installed locally on your machine.
+
+Commands:
+git clone ssh://bandit31-git@bandit.labs.overthewire.org:2220/home/bandit31-git/repo
+ls
+cd repo
+ls -la
+cat README.md
+echo "May I come in?" > key.txt
+cat key.txt
+git add key.txt
+git add -f key.txt
+
+{Git asked me to configure the following settings for this repository to identify the person who made commit:
+git config user.name "Your Name"
+git config user.email "your-email@example.com"}
+
+git commit -m "Add key.txt"
+git push origin master
+
+Why:
+- "git clone ssh://bandit31-git@bandit.labs.overthewire.org:2220/home/bandit31-git/repo": I used this command in my local terminal to download a copy of the Git repository. It connects to the server using SSH as the user bandit31-git. The :2220 specifies the SSH port. Although I was logging in as bandit31-git, I used the Bandit31 password because the challenge stated that both accounts have the same password. The remaining path specifies the location of the Git repository on the server. The git clone command then downloaded a copy of that repository into my local machine. I logged in as bandit31-git using the Bandit31 password.
+- "ls": I used this command to check the files and folders in my current directory. It showed the newly created 'repo' folder.
+- "cd repo": I used this command to enter the cloned repository folder.
+- "ls -la": I used this command to see all the files in the repository, including hidden files. It showed the "README.md" file.
+- "cat README.md": I used this command to read the README.md file. The README.md mentioned the instructions for this task. It said: "This time your task is to push a file to the remote repository.
+	Details:
+    	    File name: key.txt
+    	    Content: 'May I come in?'
+    	    Branch: master"
+- "echo "May I come in?" > key.txt": I used this command to create a file named key.txt and wrote the required text into it. The '>' symbol sends the text into the file instead of displaying it in the terminal.
+- "cat key.txt": I used this command to check that the file contained the correct text.
+- "git add key.txt": I used this command to try to add the file to Git, but Git ignored it because the repository's '.gitignore' file was configured to ignore .txt files.
+- "git add -f key.txt": I used this command where '-f' (force) is used to add the file even though '.gitignore' was configured to ignore it.
+- "git commit -m "Add key.txt"": I used this command to save the change as a commit. The message describes what I changed (added).
+- "git push origin master": I used this command to send my committed change to the remote repository. Here, origin is the default nickname for the remote repository, and master is the branch I pushed to. The server displayed the next password before rejecting the push.
+
+Learned:
+- I learned how to create a file using echo and the > symbol.
+- I learned that '.gitignore' file tells git which files to ignore.
+- I learned that 'git add -f' can force git to add a file that is meant to be ignored.
+- I learned the difference between git add, git commit, and git push: 'git add' - Prepares to add a file (a change is initiated); 'git commit' - Saves those changes in my local repository; 'git push' - Sends the commits to the remote repository.
+
+Password for bandit 32: pWuj5jBQ6IgV0NXwiH6g1pXRF8S1YvbT
+------------------------------------------------------------------
+
+Level 32 -> Level 33
+
+Goal: After all this git stuff, it’s time for another escape.
+
+Commands:
+ssh bandit32@bandit.labs.overthewire.org -p 2220
+{ls :- The uppercase shell converted the command into LS, which did not work.}
+$0
+cat /etc/bandit_pass/bandit33
+
+Why:
+- "$0": This is a special shell variable that represents the name of the currently running shell or script. This started a new shell (sh) inside the restricted shell. When I entered $0, the shell evaluated it to sh by itself and executed as a command. Since sh is a shell program, it started a new shell, allowing me to escape the uppercase-only restriction.
+- "sh": Starts a new shell. Since $0 evaluated to sh, entering $0 started a new shell by itself inside the restricted uppercase shell. This allowed me to use normal lowercase commands.
+- "cat /etc/bandit_pass/bandit33": Displayed the password stored in the Bandit 33 password file. Here, cat reads the file, /etc/bandit_pass/ is the directory containing level passwords, and bandit33 is the file name.
+
+Learned:
+- I learned that Linux commands are case-sensitive, so uppercase and lowercase letters are treated differently.
+- I learned that a restricted shell can limit the commands I can use.
+- I learned that $0 is a special shell variable representing the name of the currently running shell or script.
+- I learned that entering $0 can execute the shell name stored in that variable by itself. In this challenge, $0 contained sh.
+- I learned that sh starts a new shell, which allows to escape the restricted shell.
+- I learned that $0 does not directly change the shell. It evaluates to the shell's name (sh in this challenge), and executing sh starts another shell by itself.
+
+Final Password: u4P2CyPOwPGLe94RdD9Uo2FxFwvnFswM
+------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------
+		   LIST OF ALL THE BASIC COMMANDS USED/MUST KNOW
+--------------------------------------------------------------------------------------
+
+1. mkdir foldername : Creates a new directory
+2. mkdir -p a/b/c : Creates nested directories, including parent directories if needed
+3. echo "Hello" > file.txt : Creates a file and writes text into it. If the file already exists, then it replaces existing file content.
+4. echo "Hello" >> file.txt : Adds text to the end of an existing file without replacing existing content.
+5. nano notes.txt : Opens the Nano text editor (a terminal-based text editor for creating, opening, editing and saving text files directly from the terminal) and creates notes.txt file if it doesn't exist. If the file already exists, Nano opens it.
+			- Ctrl + O : Save a file
+			- Ctrl + X : Exit the Nano editor
+6. rm file.txt : Deletes a file
+7. rmdir foldername : Deletes an empty directory
+8. rm -r foldername : Deletes a directory and its contents
+9. rm -f file.txt : Force-deletes a file without asking for confirmation
+10. rm -rf foldername : Force-deletes a directory and everything inside it
+11. mv oldname.txt newname.txt : Renames a file
+12. mv old-folder new-folder : Renames a directory
+13. mv file.txt foldername/ : Moves a file into a directory
+14. mv folder1 folder2/ : Moves a directory inside another directory
+15. cp file1.txt file2.txt : Copies a file
+16. cp file.txt foldername/ : Copies a file into a directory
+17. cp -r folder1 folder2 : Copies a directory and its contents
+18. pwd : Displays your current directory location
+19. ls : Lists files and directories
+20. ls -l : Displays files in a detailed list. Lets you inspect file permissions
+21. ls -a : Displays hidden files too
+22. ls -la : Displays all files, including hidden files, in detailed format
+23. cd foldername : Enters a directory
+24. cd ~ : Goes to your home directory
+25. cd / : Goes to the root directory
+26. clear : Clears the terminal screen
+27. exit : Exits the current shell or remote session
+28. grep : Search for a specific word, phrase or pattern in text
+29. grep "word" filename : Finds lines containing 'word'
+30. grep -i "word" filename : Searches without considering uppercase/lowercase differences
+31. grep -n "word" filename : Displays matching lines with their line numbers
+32. grep -v "word" filename : Displays lines that do NOT contain 'word'
+33. grep -c "word" filename : Counts the number of matching lines
+34. grep -r "word" foldername/ : Searches for 'word' inside files in a directory.
+35. grep -w "word" filename : Searches for 'word' as a complete word
+36. find . -name "notes.txt" : Searches for a file named notes.txt starting from the current directory
+37. . (symbol) : Current directory
+38. .. (symbol) : Parent directory
+39. ~ (symbol) : Your home directory
+40. / (symbol) : Root directory or a path separator, depending on where it appears
+41. | (symbol) : Pipe symbol. Take the output of one command and pass it as the input to another command
+42. > (symbol) : Sends output into a file, replacing its existing content
+43. >> (symbol) : Adds output to the end of a file without replacing its existing content
+44. & (symbol) : Runs a command in the background when used at the end
+45. ; (symbol) : Runs multiple commands sequentially
+46. cat file.txt : Displays file contents
+47. head file.txt : Displays the first 10 lines
+48. tail file.txt : Displays the last 10 lines
+49. wc -l file.txt : Counts the number of lines
+50. diff file1 file2 : Shows differences between two files
+51. chmod +x script.sh : Adds permission to execute a file
+52. chmod 644 file.txt : Sets specific read/write permissions
+53. chmod 600 file.txt : Gives the owner read/write permission and removes permissions for others. If file.txt is a keyfile then it restricts access to a private key file.
+54. Permission Numbers :- First Number - Owner permissions ; Second Number - Group permissions ; Third Number - Permissions for Others
+				-> 4 - Read ; 2 - Write ; 1 - Execute ; 7 - Read + Write + Execute ; 6 - Read + Write ; 5 - Read + Execute ; 0 - No permissions
+55. ssh username@hostname -p 2220 : Connects to a remote server using SSH
+56. ssh -i keyfile username@hostname -p 2220 : Connects using a private key
+57. scp -P 2220 source destination : Copies files between computers using SSH
+58. git clone URL : Downloads a copy of a Git repository
+59. git status : Shows the current state of your repository
+60. git branch -a : Lists local and remote-tracking branches
+61. git checkout dev : Switches to the dev branch
+62. git log : Displays commit history
+63. git show COMMIT:filename : Displays information about a commit
+64. git tag : Lists available tags
+65. git show secret : Displays information associated with the secret tag
+66. git add file.txt : Prepares to add a file (a change is initiated) for a commit
+67. git add -f file.txt : Force-adds an ignored file
+68. git commit -m "message" : Saves changes as a commit
+69. git push origin master : Sends commits to the remote master branch
+70. whoami : Displays the current username
+71. file filename : Identifies the type of a file
+72. man command : Opens the manual/help page for a command
+73. echo $0 : Displays the name of the current shell or script
+74. file ./* : Identify the type of every file in the current directory
+75. find . -size 1033c -type f ! -executable : Search for files using size, type and permission conditions
+76. find / -type f -user bandit7 -group bandit6 -size 33c : Search the filesystem using ownership and size conditions
+77. sort : Arrange lines in order
+78. uniq -u : Display lines that occur exactly once in consecutive input. Input should be sorted first when checking duplicates across a whole file.
+79. strings : Extract readable text from binary data
+80. base64 -d : Decode Base64-encoded data
+81. tr : Translate or replace characters
+82. mktemp -d : Create a temporary directory
+83. cd $(mktemp -d) : Create a temporary directory and immediately enter it
+84. cp ~/data.txt . : Copy a file from the home directory into the current directory
+85. xxd -r : Convert a hexdump back into its original binary data
+86. gunzip : Decompress gzip files
+87. bunzip2 : Decompress bzip2 files
+88. tar -xf : Extract a tar archive
+89. nc : Connect to a network service using Netcat
+90. openssl s_client -connect localhost:PORT : Connect to a service using SSL/TLS
+91. nmap -p : Scan specified network ports
+92. nc -l -p : Start a Netcat listener on a specified port
+93. ./suconnect : Run the suconnect program from the current directory
+94. md5sum : Generate an MD5 hash
+95. 'for' loop : Repeat commands for a range of values
+96. 'do' and 'done' : Mark the beginning and end of a shell loop
+97. $i : Access the current value of the loop variable
+98. v : Open and work with the vi text editor. It is a shortcut used inside 'more', not a standalone Linux command.
+99. :e filename : Open another file from inside vi
+100. :set shell=/bin/bash : Set the shell that vi uses
+101. :shell : Open a shell from inside vi
+102. $0: $0 executes the shell name stored in that variable by itself
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+													   END
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
