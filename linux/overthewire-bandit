@@ -137,7 +137,7 @@ Why:
 
 Learned:
 - ASCII file type is human-readable
-- The use of "file./*" command
+- The use of "file ./*" command
 
 Password for bandit5: 6C7h9GD8M6ai....
 ------------------------------------------------------------------
@@ -675,7 +675,7 @@ Level 26 -> Level 27
 Goal: Good job getting a shell! Now hurry and grab the password for bandit27!
 
 Commands:
-{MINIZE THE TERMINAL WINDOW TO MAKE IT VERY NARROW}
+{MINIMIZE THE TERMINAL WINDOW TO MAKE IT VERY NARROW}
 ssh bandit26@bandit.labs.overthewire.org -p 2220
 {password for bandit26}
 {Inside the 'more' screen}
